@@ -1,0 +1,80 @@
+/*!
+Theme Name: gaming
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: gaming
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
+
+gaming is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+	@apply px-5 md:px-20;
+}
+
+.page_item {
+	@apply font-bold;
+}
+
+ul#primary-menu {
+	@apply block lg:flex;
+	@apply justify-end;
+}
+
+#site-navigation {
+	/*@apply w-full;*/
+}
+
+ol li {
+	list-style: auto;
+}
+
+.menu-item {
+	@apply mx-10;
+	@apply font-medium tracking-wider hover:text-brand-500 duration-75 uppercase;
+	@apply py-5 lg:py-0 text-center lg:text-left;
+}
+
+/* editor rules */
+
+.entry-content h1 {
+	@apply text-xl lg:text-3xl;
+}
+
+.entry-content a {
+	@apply text-brand hover:text-brand-700 duration-75;
+}
+
+.entry-content h2 {
+	@apply text-xl lg:text-3xl;
+}
+
+.entry-content h3 {
+	@apply text-xl lg:text-2xl;
+}
+
+.entry-content h4 {
+	@apply text-xl lg:text-xl;
+}
+
+.nav-links {
+	@apply text-2xl text-nd-500;
+}
