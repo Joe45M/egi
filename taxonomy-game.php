@@ -12,10 +12,49 @@ get_header();
 
     <main id="primary" class="site-main">
 
-        <div class="py-20 mb-10 lg:py-32 font-display bg-gradient-to-bl from-nd-600 to-nd-400 text-center text-white">
-            <h1 class="text-2xl lg:text-5xl font-bold"><?php echo str_replace('game: ', '', get_the_archive_title()) ?></h1>
-            <div class="text-2xl font-lighter"><?php
-                the_archive_description(); ?></div>
+
+        <div class="py-10">
+            <div class="container mx-auto">
+
+
+                <div class="mb-3 text-sm text-zinc-200">
+                    <?php
+
+                    yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+                    ?>
+                </div>
+                <h1 class="text-4xl font-display text-zinc-200 mb-1 font-bold uppercase"><?php echo str_replace('game: ', '', get_the_archive_title()) ?></h1>
+                <div class="text-xl text-zinc-400 font-lighter"><?php
+                    the_archive_description(); ?></div>
+            </div>
+
+
+            <?php
+
+            $term = get_term_by('term_taxonomy_id', get_queried_object()->term_id);
+
+
+            $tags = get_field('tags', $term);
+
+            ?>
+
+            <div class="container mx-auto mb-5 pt-5">
+                <div class="grid grid-cols-2 lg:grid-cols-6 gap-5">
+                    <?php
+
+                    if (!isset($_GET['tags'])):
+                        foreach ($tags as $tag): ?>
+
+                        <a class="p-5 rounded-md text-white text-center bg-zinc-800 border border-gray-600" href="?getby=tag&tags=<?php echo $tag->slug ?>">
+                            <?php echo $tag->name ?>
+                        </a>
+
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
+
+                </div>
+            </div>
         </div>
         <?php if (have_posts()) : ?>
         <div class="container mx-auto">
@@ -26,19 +65,37 @@ get_header();
                 while (have_posts()) :
                     the_post();
 
+                if ($i === 3 || $i === 9): ?>
+
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6764478945960117"
+                            crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-format="fluid"
+                         data-ad-layout-key="-62+ct+5-46+cv"
+                         data-ad-client="ca-pub-6764478945960117"
+                         data-ad-slot="2770254447"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+
+                <?php endif;
+
                     if ($i === 0): ?>
+
+
 
                         <a href="<?php the_permalink() ?>" class="lg:col-span-3 group">
                             <div class="grid lg:grid-cols-2 gap-10">
                                 <img src="<?php the_post_thumbnail_url(get_the_ID()) ?>" alt="Post image"
-                                     class="aspect-video rounded-xl group-hover:scale-105 duration-300">
+                                     class="aspect-video rounded-md group-hover:scale-105 duration-300">
 
                                 <div class="flex">
                                     <div class="justify-between">
                                         <p class="text-3xl mb-3 font-bold text-brand-500"><?php the_title(); ?></p>
-                                        <div class="leading-7 mb-5"><?php the_excerpt() ?></div>
+                                        <div class="leading-7 text-zinc-200 mb-5"><?php the_excerpt() ?></div>
                                         <div class="flex w-full gap-5">
-                                            <div class="flex items-center">
+                                            <div class="flex items-center text-gray-400">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                      viewBox="0 0 24 24"
                                                      stroke-width="1.5" stroke="currentColor" class="w-6  mr-2 h-6">
@@ -49,7 +106,7 @@ get_header();
                                                 <?php echo get_the_author_meta('display_name'); ?>
                                             </span>
                                             </div>
-                                            <div class="flex items-center">
+                                            <div class="flex items-center text-gray-400">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                      viewBox="0 0 24 24"
                                                      stroke-width="1.5" stroke="currentColor" class="w-6 mr-2 h-6">
@@ -69,14 +126,16 @@ get_header();
                     <?php else: ?>
 
                         <a href="<?php the_permalink(); ?>" class="group">
-                            <img src="<?php the_post_thumbnail_url(get_the_ID()) ?>" alt="Post image"
+                            <img src="<?php the_post_thumbnail_url('medium') ?>" alt="Post image"
                                  class="w-full aspect-video object-cover rounded-md mb-5 group-hover:scale-105 duration-300">
 
                             <div class="flex">
                                 <div class="self-end">
                                     <p class="text-xl mb-3 font-bold text-brand-500"><?php the_title(); ?></p>
+                                    <p class="text-xs mb-3 text-zinc-200"><?php echo wp_trim_words(get_the_excerpt(), 22, '...') ?></p>
+
                                     <div class="flex w-full gap-5">
-                                        <div class="flex items-center">
+                                        <div class="flex items-center text-gray-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke-width="1.5" stroke="currentColor" class="w-6  mr-2 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -86,7 +145,7 @@ get_header();
                                                 <?php echo get_the_author_meta('display_name'); ?>
                                             </span>
                                         </div>
-                                        <div class="flex items-center">
+                                        <div class="flex items-center text-gray-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke-width="1.5" stroke="currentColor" class="w-6 mr-2 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -108,7 +167,6 @@ get_header();
 
                 endwhile;
 
-                			the_posts_navigation();
 
                 else :
 
@@ -118,6 +176,13 @@ get_header();
                 ?>
             </div>
         </div>
+
+        <div class="flex justify-center w-full">
+            <?php
+
+            the_posts_pagination()
+
+            ?></div>
 
     </main><!-- #main -->
 

@@ -1,0 +1,14 @@
+{
+  "name": "gaming/search",
+  "title": "Post Search",
+  "description": "Search for posts by post type.",
+  "category": "formatting",
+  "icon": "admin-search",
+  "style": [ "file:/wp-content/themes/gaming/style.css" ],
+  "keywords": ["Posts", "Search"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "search.php"
+  },
+  "align": "full"
+}

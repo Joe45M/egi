@@ -14,275 +14,439 @@
 
 get_header();
 
+$minecraftMessages = array(
+    "1. Digging deep!",
+    "2. Blocks upon blocks!",
+    "3. Mining for fun!",
+    "4. Crafting your world!",
+    "5. A world of infinite possibilities!",
+    "6. Redstone rocks!",
+    "7. Beware the Creeper!",
+    "8. Explore your creativity!",
+    "9. Pixel perfect!",
+    "10. Build it up!",
+    "11. Discover the unknown!",
+    "12. Unearth hidden treasures!",
+    "13. Let's get blocky!",
+    "14. One block at a time!",
+    "15. A miner's delight!",
+    "16. Venturing into the darkness!",
+    "17. Taming the wild!",
+    "18. A world of adventure awaits!",
+    "19. Pixelated paradise!",
+    "20. Craft your destiny!",
+    "21. Raise your sword!",
+    "22. Don't dig straight down!",
+    "23. Defeat the Ender Dragon!",
+    "24. Enchanting encounters!",
+    "25. Home is where the heart is!",
+    "26. Create. Explore. Survive.",
+    "27. Journey to the Nether!",
+    "28. Keep calm and mine on!",
+    "29. Join the block party!",
+    "30. Unleash your inner architect!",
+    "31. Embrace your creativity!",
+    "32. Adventure awaits!",
+    "33. Battle the mobs!",
+    "34. Conquer the elements!",
+    "35. Forge your own path!",
+    "36. Find your own way!",
+    "37. Survive the night!",
+    "38. The sky's the limit!",
+    "39. Harvest the fruits of your labor!",
+    "40. Keep on building!",
+    "41. Together we craft!",
+    "42. Where imagination meets reality!",
+    "43. Create a masterpiece!",
+    "44. Journey into the unknown!",
+    "45. Leave no stone unturned!",
+    "46. Craft your legacy!",
+    "47. Unlock your potential!",
+    "48. Beware the deep!",
+    "49. Rule the skies!",
+    "50. Find your treasure!",
+    "51. The world is your canvas!",
+    "52. Dare to dream!",
+    "53. Dig, craft, build!",
+    "54. Mine the depths!",
+    "55. Blaze your own trail!",
+    "56. Adventure is out there!",
+    "57. Unleash your creativity!",
+    "58. Embrace the block!",
+    "59. Brave the unknown!",
+    "60. Go beyond the horizon!",
+    "61. Defy gravity!",
+    "62. Dream big!",
+    "63. Master the elements!",
+    "64. Find your inner builder!",
+    "65. A blocky new beginning!",
+    "66. Carve your own path!",
+    "67. Unleash the power of redstone!",
+    "68. Unravel the mysteries!",
+    "69. A pixel-perfect world!",
+    "70. Explore. Craft. Conquer.",
+    "71. Immerse yourself in the world!",
+    "72. Ignite your imagination!",
+    "73. Defend your creations!",
+    "74. The world is your playground!",
+    "75. Shape your destiny!",
+    "76. Expand your horizons!",
+    "77. Venture forth!",
+    "78. The sky is no limit!",
+    "79. Stand tall!",
+    "80. Create your own adventure!",
+    "81. Blaze a trail!",
+);
+
+
+$headerMessage = $minecraftMessages[array_rand($minecraftMessages)];
 
 $args = [
-    'post_type' => 'games',
-    'orderby' => 'publish_date',
-    'order' => 'DESC',
-    'tax_query' => [
+    'post_type'      => 'games',
+    'orderby'        => 'publish_date',
+    'order'          => 'DESC',
+    'tax_query'      => [
         [
             'taxonomy' => 'game',
             'field'    => 'slug',
             'terms'    => 'minecraft',
         ],
     ],
-    'limit' => 10,
+    'posts_per_page' => 7,
 ];
 
 $mcPosts = new WP_Query($args);
 
 $args = [
-    'post_type' => 'games',
-    'orderby' => 'publish_date',
-    'order' => 'DESC',
-    'tax_query' => [
+    'post_type'      => 'news',
+    'orderby'        => 'publish_date',
+    'order'          => 'DESC',
+    'posts_per_page' => 7,
+];
+
+$news = new WP_Query($args);
+
+$args = [
+    'post_type'      => 'games',
+    'orderby'        => 'publish_date',
+    'order'          => 'DESC',
+    'tax_query'      => [
         [
             'taxonomy' => 'game',
             'field'    => 'slug',
             'terms'    => 'call-of-duty',
         ],
     ],
-    'limit' => 10,
+    'posts_per_page' => 7,
 ];
 
 $codPosts = new WP_Query($args);
 
 
+$args = [
+    'post_type' => 'games',
+    'orderby'   => 'publish_date',
+    'order'     => 'DESC',
+    'tax_query' => [
+        [
+            'taxonomy' => 'game',
+            'field'    => 'slug',
+            'terms'    => 'reviews',
+        ],
+    ],
+    'limit'     => 10,
+];
+
+$reviews = new WP_Query($args);
 ?>
 
-    <main id="primary" class="site-main">
+    <main id="primary" class="site-main bg-zinc-900">
+        <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+        />
 
-        <div class="py-20 mb-10 lg:py-32 font-display bg-gradient-to-bl from-nd-600 to-nd-400 text-center text-white text-2xl lg:text-5xl">
-            <h1 class="mb-3 font-bold ">Level up your game.</h1>
-            <p class="text-lg font-normal">Tutorials, tips and tricks for gamers.</p>
-            <form action="">
-                <input type="text" name="s" placeholder="Search for tips.." class="p-3 text-lg placeholder:text-white/50 focus:bg-white focus:text-black duration-300 hover:bg-white hover:placeholder:text-black rounded-md border border-gray-300 bg-transparent">
-            </form>
-        </div>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-        <div class="container mx-auto relative">
-            <div class="grid gap-5 md:grid-cols-2">
-                <a href="/game/minecraft" class="rounded-lg cursor-pointer text-green-900 h-40 group relative bg-gradient-to-bl from-green-400 hover:scale-105 z-50 duration-300 via-green-200 to-green-400">
-                    <p class="text-4xl font-display font-bold p-5">Minecraft </p>
-                    <p class="text-lg lg:text-2xl font-display font-bold group-hover:opacity-0 group-hover:absolute p-5">Latest & greatest Minecraft guides </p>
-                    <p class="text-lg lg:text-2xl font-display font-bold opacity-0 group-hover:opacity-100  p-5 flex gap-2 items-center">Go to Minecraft guides
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-7 h-7">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                        </svg>
-                    </p>
-                    <img class="card-mc absolute scale-0 group-hover:scale-100 h-56 bottom-0 right-0 duration-300 origin-bottom-right" src="<?php echo get_template_directory_uri() ?>/img/mc.png" alt="MC character">
-                </a>
-                <a href="/game/call-of-duty" class="rounded-lg cursor-pointer text-white h-40 group relative bg-gradient-to-bl from-nd-700 hover:scale-105 z-50 duration-300 via-nd-700 to-nd-600">
-                    <p class="text-4xl font-display font-bold p-5">Call of Duty </p>
-                    <p class="text-lg lg:text-2xl font-display font-bold group-hover:opacity-0 group-hover:absolute p-5">Become a Call of Duty pro </p>
-                    <p class="text-lg lg:text-2xl font-display font-bold opacity-0 group-hover:opacity-100  p-5 flex gap-2 items-center">Go to guides
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="w-7 h-7">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                        </svg>
-                    </p>
-                    <img class="card-mc absolute scale-0 group-hover:scale-100 h-56 bottom-0 right-0 duration-300 origin-bottom-right" src="<?php echo get_template_directory_uri() ?>/img/wz.png" alt="MC character">
-                </a>
+
+        <div class="bg-black">
+            <div class="home-header" style="background-image:url('/wp-content/themes/gaming/img/header-bg.png');">
+                <div class="py-48 bg-zinc-900/20 hue-rotate">
+                    <div class="container mx-auto">
+                        <h1 class="text-3xl text-white text-center font-bold mb-10 uppercase">Ultimate game guides</h1>
+                        <h2 class="text-2xl text-white text-center font-bold">Best In Class Gaming Tutorials by EliteGamerInsights</h2>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="block text-gray-200 container mx-auto mt-10">
+
+            <div class="grid mb-10 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-5">
+
+                <?php
+
+
+                while(have_rows('game_link', 'options')): the_row(); ?>
+
+                    <a href="<?php echo get_sub_field('link') ?>" class="p-3 bg-zinc-800 rounded-md hover:bg-nd-500 transition-all duration-200">
+                        <img src="<?php echo get_sub_field('image') ?>" alt="Game logo" class="h-40 w-w-full mb-3 object-cover">
+                        <div class="block leading-relaxed w-full text-center font-bold"><?php echo get_sub_field('text') ?></div>
+                    </a>
+
+                <?php endwhile; ?>
+            </div>
+
+
+            <p class="text-4xl font-display text-zinc-200 mb-3 font-bold uppercase">Latest news</p>
+            <div class="swiper swiper-mobile h-40 mb-20">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper text-white">
+                    <!-- Slides -->
+                    <?php foreach ($news->posts as $post): ?>
+                            <a href="<?php the_permalink($post) ?>"
+                               class="swiper-slide border border-gray-600 rounded-md flex h-full justify-center items-end"
+                               style="background-image: url(<?php echo get_the_post_thumbnail_url($post, 'medium') ?>); background-position: center; background-size: cover;">
+                                <div class="bg-gradient-to-r rounded-md
+
+                                from-zinc-800/100 via-zinc-800/90 to-zinc-500/30
+
+                                hover:from-zinc-800/70 hover:via-zinc-800/60 hover:to-zinc-500/0
+
+                                duration-200 transition-all
+
+                                h-full flex items-end pl-5 pb-5">
+                                    <h3 class="lg:mb-0 mb-0 lg:text-xl font-bold"><?php echo $post->post_title ?></h3>
+
+                                </div>
+                            </a>
+                    <?php endforeach ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="atmosphere">
+            <div class="container text-gray-200 mx-auto">
+                <div class="relative mb-3 ">
+                    <p class="text-4xl font-display text-zinc-200 mb-3 font-bold uppercase">Minecraft</p>
+                </div>
+                <div class="">
+                    <div class="grid lg:grid-cols-3 gap-10 mb-20">
+                        <?php
+
+                        $i = 0;
+                        if ($mcPosts->have_posts()) {
+                            while ($mcPosts->have_posts()) {
+                                $mcPosts->the_post();
+
+
+                            if ($i === 3): ?>
+
+                                <script async
+                                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6764478945960117"
+                                        crossorigin="anonymous"></script>
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-format="fluid"
+                                     data-ad-layout-key="-62+ct+5-46+cv"
+                                     data-ad-client="ca-pub-6764478945960117"
+                                     data-ad-slot="2770254447"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+
+                            <?php endif;
+
+                            if ($i === 0): ?>
+
+                                <a href="<?php the_permalink() ?>" class="lg:col-span-3 group">
+                                    <div class="grid lg:grid-cols-2 gap-5">
+                                        <img src="<?php the_post_thumbnail_url() ?>" alt="Post image"
+                                             class="aspect-video group-hover:scale-105 duration-300">
+
+                                        <div class="flex">
+                                            <div class="justify-between">
+                                                <p class="text-2xl mb-3 font-bold"><?php the_title(); ?></p>
+                                                <div class="leading-7 mb-5"><?php the_excerpt() ?></div>
+                                                <div class="flex w-full gap-5 text-gray-400">
+                                                    <div class="flex items-center gap-3">
+
+
+                                                        <img src="<?php echo the_field('profile_image','user_'.get_the_author_meta('ID')) ?>" alt="Profile image" class="block w-8 object-cover rounded-full">
+                                                        <?php echo get_the_author_meta('display_name'); ?>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <span><?php echo get_the_date(); ?></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            <?php else: ?>
+
+                                <a href="<?php the_permalink(); ?>" class="group">
+                                    <img src="<?php the_post_thumbnail_url('medium') ?>" alt="Post image"
+                                         class="w-full aspect-video object-cover mb-5 group-hover:scale-105 duration-300">
+
+                                    <div class="flex">
+                                        <div class="self-end">
+                                            <p class="text-xl mb-3 font-bold"><?php the_title(); ?></p>
+                                            <p class="text-xs mb-3"><?php echo wp_trim_words(get_the_excerpt(), 22,
+                                                    '...') ?></p>
+
+                                            <div class="flex w-full gap-5 text-gray-400">
+                                                <div class="flex items-center gap-3">
+
+
+                                                    <?php echo get_the_author_meta('display_name'); ?>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <span><?php echo get_the_date(); ?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            <?php
+
+                            endif;
+
+                                $i++;
+                            }
+                        } else {
+                            // no posts found
+                        }
+
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="atmosphere-2">
+            <div class="container text-gray-200 mx-auto">
+
+
+
+                <div class="relative mb-3">
+                    <p class="text-4xl font-display text-zinc-200 mb-3 font-bold uppercase">Call of Duty</p>
+
+                </div>
+                <div class="grid lg:grid-cols-3 mb-10 gap-10">
+                    <?php
+
+                    $i = 0;
+                    if ($codPosts->have_posts()) {
+                        while ($codPosts->have_posts()) {
+                            $codPosts->the_post();
+
+                        if ($i === 3): ?>
+
+                            <script async
+                                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6764478945960117"
+                                    crossorigin="anonymous"></script>
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-format="fluid"
+                                 data-ad-layout-key="-62+ct+5-46+cv"
+                                 data-ad-client="ca-pub-6764478945960117"
+                                 data-ad-slot="2770254447"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+
+                        <?php endif;
+
+                        if ($i === 0): ?>
+
+                            <a href="<?php the_permalink() ?>" class="lg:col-span-3 group">
+                                <div class="grid lg:grid-cols-2 gap-5">
+                                    <img src="<?php the_post_thumbnail_url() ?>" alt="Post image"
+                                         class="aspect-video rounded-md group-hover:scale-105 duration-300">
+
+                                    <div class="flex">
+                                        <div class="justify-between">
+                                            <p class="text-2xl mb-3 font-bold"><?php the_title(); ?></p>
+                                            <p class="text-xs mb-3"><?php echo wp_trim_words(get_the_excerpt(), 22,
+                                                    '...') ?></p>
+                                            <div class="leading-7 mb-5"><?php the_excerpt() ?></div>
+
+                                            <div class="flex w-full gap-5 text-gray-400">
+                                                <div class="flex items-center gap-3">
+
+
+                                                    <img src="<?php echo the_field('profile_image','user_'.get_the_author_meta('ID')) ?>" alt="Profile image" class="block w-8 object-cover rounded-full">
+                                                    <?php echo get_the_author_meta('display_name'); ?>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <span><?php echo get_the_date(); ?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        <?php else: ?>
+
+                            <a href="<?php the_permalink(); ?>" class="group">
+                                <img src="<?php the_post_thumbnail_url('medium') ?>" alt="Post image"
+                                     class="w-full aspect-video object-cover rounded-md mb-5 group-hover:scale-105 duration-300">
+
+                                <div class="flex">
+                                    <div class="self-end">
+                                        <p class="text-xl mb-3 font-bold"><?php the_title(); ?></p>
+                                        <p class="text-xs mb-3"><?php echo wp_trim_words(get_the_excerpt(), 22,
+                                                '...') ?></p>
+
+
+                                        <div class="flex w-full gap-5 text-gray-400">
+                                            <div class="flex items-center gap-3">
+
+
+                                                <?php echo get_the_author_meta('display_name'); ?>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span><?php echo get_the_date(); ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        <?php
+
+                        endif;
+
+                            $i++;
+                        }
+                    } else {
+                        // no posts found
+                    }
+
+                    ?>
+                </div>
+            </div>
+        </div>
+
 
         <div class="container mx-auto">
-            <div class="relative mb-3">
-                <p class="text-3xl font-bold z-50 py-3 pr-5 bg-white relative inline-block">Minecraft</p>
-                <div class="absolute h-2 bg-brand w-full top-1/2 left-0 z-10 -translate-y-1/2"></div>
-            </div>
-            <div class="grid lg:grid-cols-3 gap-10 mb-10">
-                <?php
-
-                $i = 0;
-                if ($mcPosts->have_posts()) {
-                    while ($mcPosts->have_posts()) {
-                        $mcPosts->the_post();
-
-                        if ($i === 0): ?>
-
-                            <a href="<?php the_permalink() ?>" class="lg:col-span-3 group">
-                                <div class="grid lg:grid-cols-2 gap-10">
-                                    <img src="<?php the_post_thumbnail_url('small') ?>" alt="Post image"
-                                         class="aspect-video rounded-xl group-hover:scale-105 duration-300">
-
-                                    <div class="flex">
-                                        <div class="justify-between">
-                                            <p class="text-3xl mb-3 font-bold"><?php the_title(); ?></p>
-                                            <div class="leading-7 mb-5"><?php the_excerpt() ?></div>
-                                            <div class="flex w-full gap-5">
-                                                <div class="flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                         viewBox="0 0 24 24"
-                                                         stroke-width="1.5" stroke="currentColor" class="w-6  mr-2 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-                                                    </svg>
-                                                    <span>
-                                                <?php echo get_the_author_meta('display_name'); ?>
-                                            </span>
-                                                </div>
-                                                <div class="flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                         viewBox="0 0 24 24"
-                                                         stroke-width="1.5" stroke="currentColor" class="w-6 mr-2 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                    </svg>
-                                                    <span>
-                                                <?php echo get_the_date(); ?>
-                                            </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                        <?php else: ?>
-
-                            <a href="<?php the_permalink(); ?>" class="group">
-                                <img src="<?php the_post_thumbnail_url('small') ?>" alt="Post image"
-                                     class="w-full aspect-video object-cover rounded-md mb-5 group-hover:scale-105 duration-300">
-
-                                <div class="flex">
-                                    <div class="self-end">
-                                        <p class="text-xl mb-3 font-bold"><?php the_title(); ?></p>
-                                        <div class="flex w-full gap-5">
-                                            <div class="flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                     stroke-width="1.5" stroke="currentColor" class="w-6  mr-2 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-                                                </svg>
-                                                <span>
-                                                <?php echo get_the_author_meta('display_name'); ?>
-                                            </span>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                     stroke-width="1.5" stroke="currentColor" class="w-6 mr-2 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                </svg>
-                                                <span>
-                                                <?php echo get_the_date(); ?>
-                                            </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        <?php
-
-                        endif;
-
-                        $i++;
-                    }
-                } else {
-                    // no posts found
-                }
-
-                ?>
-            </div>
-
-
-            <div class="relative mb-3">
-                <p class="text-3xl font-bold z-50 py-3 pr-5 bg-white relative inline-block">Call of Duty</p>
-                <div class="absolute h-2 bg-brand w-full top-1/2 left-0 z-10 -translate-y-1/2"></div>
-            </div>
-            <div class="grid lg:grid-cols-3 gap-10">
-                <?php
-
-                $i = 0;
-                if ($codPosts->have_posts()) {
-                    while ($codPosts->have_posts()) {
-                        $codPosts->the_post();
-
-                        if ($i === 0): ?>
-
-                            <a href="<?php the_permalink() ?>" class="lg:col-span-3 group">
-                                <div class="grid lg:grid-cols-2 gap-10">
-                                    <img src="<?php the_post_thumbnail_url('small') ?>" alt="Post image"
-                                         class="aspect-video rounded-xl group-hover:scale-105 duration-300">
-
-                                    <div class="flex">
-                                        <div class="justify-between">
-                                            <p class="text-3xl mb-3 font-bold"><?php the_title(); ?></p>
-                                            <div class="leading-7 mb-5"><?php the_excerpt() ?></div>
-                                            <div class="flex w-full gap-5">
-                                                <div class="flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                         viewBox="0 0 24 24"
-                                                         stroke-width="1.5" stroke="currentColor" class="w-6  mr-2 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-                                                    </svg>
-                                                    <span>
-                                                <?php echo get_the_author_meta('display_name'); ?>
-                                            </span>
-                                                </div>
-                                                <div class="flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                         viewBox="0 0 24 24"
-                                                         stroke-width="1.5" stroke="currentColor" class="w-6 mr-2 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                    </svg>
-                                                    <span>
-                                                <?php echo get_the_date(); ?>
-                                            </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                        <?php else: ?>
-
-                            <a href="<?php the_permalink(); ?>" class="group">
-                                <img src="<?php the_post_thumbnail_url('small') ?>" alt="Post image"
-                                     class="w-full aspect-video object-cover rounded-md mb-5 group-hover:scale-105 duration-300">
-
-                                <div class="flex">
-                                    <div class="self-end">
-                                        <p class="text-xl mb-3 font-bold"><?php the_title(); ?></p>
-                                        <div class="flex w-full gap-5">
-                                            <div class="flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                     stroke-width="1.5" stroke="currentColor" class="w-6  mr-2 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-                                                </svg>
-                                                <span>
-                                                <?php echo get_the_author_meta('display_name'); ?>
-                                            </span>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                     stroke-width="1.5" stroke="currentColor" class="w-6 mr-2 h-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                </svg>
-                                                <span>
-                                                <?php echo get_the_date(); ?>
-                                            </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        <?php
-
-                        endif;
-
-                        $i++;
-                    }
-                } else {
-                    // no posts found
-                }
-
-                ?>
+            <div class=" mb-10 rounded-3xl mt-8 pt-10 px-10 font-display bg-gradient-to-bl from-nd-600 to-nd-400 text-white text-2xl lg:text-5xl">
+                <div class="grid lg:grid-cols-5">
+                    <div class="lg:col-span-3 mb-8 lg:mb-32 relative">
+                        <span class="float header-message shadow-none"><?php echo $headerMessage ?></span>
+                        <span class="mb-3 font-bold ">Elite insights, news and tutorials.</span>
+                        <p class="text-lg font-normal">Become an elite gamer with our help.</p>
+                        <!--            <form action="">-->
+                        <!--                <input type="text" name="s" placeholder="Search for tips.." class="p-3 text-lg placeholder:text-white/50 focus:bg-white focus:text-black duration-300 hover:bg-white hover:placeholder:text-black rounded-md border border-gray-300 bg-transparent">-->
+                        <!--            </form>-->
+                    </div>
+                    <div class="lg:col-span-2 relative">
+                        <img class="absolute pt-7 h-56 hidden lg:block lg:h-96 -bottom-16"
+                             src="/wp-content/themes/gaming/img/header.png"
+                             alt="Minecraft Elitegamerinsights homepage character">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -315,6 +479,35 @@ $codPosts = new WP_Query($args);
         ?>
 
     </main><!-- #main -->
+
+
+    <script>
+        const mobile = new Swiper('.swiper-mobile', {
+            // Optional parameters
+            direction: 'horizontal',
+            // Default parameters
+            slidesPerView: 1,
+            spaceBetween: 10,
+            // Responsive breakpoints
+            breakpoints: {
+                // when window width is >= 320px
+                320: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 20
+                },
+                // when window width is >= 480px
+                480: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 30
+                },
+                // when window width is >= 640px
+                1300: {
+                    slidesPerView: 3.2,
+                    spaceBetween: 10
+                }
+            }
+        });
+    </script>
 
 <?php
 get_footer();

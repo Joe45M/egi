@@ -1,0 +1,14 @@
+{
+  "name": "gaming/kd",
+  "title": "K/D Calculator",
+  "description": "A custom testimonial block.",
+  "category": "formatting",
+  "icon": "admin-comments",
+  "style": [ "file:/wp-content/themes/gaming/style.css" ],
+  "keywords": ["k/D", "Calculator"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "kd.php"
+  },
+  "align": "full"
+}
