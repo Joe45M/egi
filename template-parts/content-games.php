@@ -9,12 +9,12 @@
 
 
 $howToArgs = [
-        'post_type' => 'games',
-    'tax_query'  => array(
+    'post_type' => 'games',
+    'tax_query' => array(
         array(
-            'taxonomy'  => 'post_tag',
-            'field'     => 'slug',
-            'terms'     =>  array(
+            'taxonomy' => 'post_tag',
+            'field'    => 'slug',
+            'terms'    => array(
                 'how-to',
             ),
         ),
@@ -53,7 +53,7 @@ if (isset($_GET['dev'])) {
     document.addEventListener("scroll", (event) => {
 
         if (!triggered) {
-            if(isScrolledIntoView(document.querySelector('#article-finished'))) {
+            if (isScrolledIntoView(document.querySelector('#article-finished'))) {
 
                 triggered = true;
                 fathom.trackGoal('CTEAYQAO', 0.001);
@@ -69,7 +69,7 @@ if (isset($_GET['dev'])) {
     <div class="entry-content mt-20">
         <div class="container mx-auto mb-32">
             <div class="grid lg:grid-cols-5 gap-14">
-                <div class="lg:border-r border-r-gray-100 relative">
+                <div class="relative">
                     <div class="sticky">
                         <p class="font-bold uppercase text-sm">Content</p>
                         <div class="rounded-md mb-5 text-sm" x-data="{show: true}">
@@ -91,24 +91,23 @@ if (isset($_GET['dev'])) {
 
                             document.querySelectorAll('.entry-content h3').forEach((e) => {
 
-                            let id = kebabCase(e.innerHTML);
+                                let id = kebabCase(e.innerHTML);
 
 
-                            let li = document.createElement('li');
-                            let a = document.createElement('a');
-                            a.setAttribute('href', "#" + id);
-                            e.setAttribute('id', id);
+                                let li = document.createElement('li');
+                                let a = document.createElement('a');
+                                a.setAttribute('href', "#" + id);
+                                e.setAttribute('id', id);
                                 e.setAttribute('class', 'hasAnchor');
-                                a.setAttribute('class', 'hasAnchor text-gray-500 hover:text-nd-500');
-                            a.innerHTML = e.innerHTML;
+                                a.setAttribute('class', 'hasAnchor text-gray-200 hover:text-nd-500');
+                                a.innerHTML = e.innerHTML;
 
-                            li.appendChild(a);
-                            ul.appendChild(li);
+                                li.appendChild(a);
+                                ul.appendChild(li);
+                            });
 
-                        });
 
-
-                        document.querySelector('#quick-links-container').appendChild(ul);
+                            document.querySelector('#quick-links-container').appendChild(ul);
                         });
                     </script>
                 </div>
@@ -133,6 +132,25 @@ if (isset($_GET['dev'])) {
                         ?>
                     </div>
                     <div id="article-finished"></div>
+                    <div class="live-updates">
+                        <?php if (have_rows('updates')): ?>
+                        <h3 class="text-3xl mb-3">Live updates</h3>
+                            <?php while(have_rows('updates')): the_row() ?>
+                            <div class="mb-3">
+                                <div class="bg-zinc-800 py-2 rounded-r-md mb-3">
+                                        <span class="p-3 bg-zinc-600 font-bold  rounded-md">
+                                            <?php the_sub_field('time') ?>
+                                        </span>
+                                </div>
+                                <div class="text-zinc-200 p-2 mb-3">
+                                    <?php the_sub_field('content') ?>
+                                </div>
+                            </div>
+
+                            <?php endwhile; ?>
+
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <div>
                     <div class="wrap mb-5">
@@ -170,13 +188,15 @@ if (isset($_GET['dev'])) {
 
                     <h3 class="mt-5 mb-3">How To:</h3>
                     <?php foreach ($howToGuides as $guide): ?>
-                    <a href="<?php the_permalink($guide); ?>" class="flex gap-3 items-center mb-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
-                        </svg>
+                        <a href="<?php the_permalink($guide); ?>" class="flex gap-3 items-center mb-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/>
+                            </svg>
 
-                        <span><?php echo $guide->post_title ?></span>
-                    </a>
+                            <span><?php echo $guide->post_title ?></span>
+                        </a>
                     <?php endforeach; ?>
 
                     <script async
@@ -239,7 +259,8 @@ if (isset($_GET['dev'])) {
 
 
         <div class="relative mb-3">
-            <h3 class="text-3xl font-bold z-50 py-3 pr-5 bg-zinc-900 text-zinc-200 relative inline-block">Discussion </h3>
+            <h3 class="text-3xl font-bold z-50 py-3 pr-5 bg-zinc-900 text-zinc-200 relative inline-block">
+                Discussion </h3>
             <div class="absolute h-2 bg-brand w-full top-1/2 left-0 z-10 -translate-y-1/2"></div>
         </div>
         <?php

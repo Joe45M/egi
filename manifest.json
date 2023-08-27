@@ -1,0 +1,67 @@
+{
+    "hostname": "wsbackups2.lhr.stackcp.net",
+    "date": "2023-06-15 19:03:37",
+    "key": "cf8b5aa21e7268a0a9d29f3bfec08ec1a263e85c",
+    "virtual_host_id": 1618187,
+    "databases": [
+        {
+            "MySqlGrantId": 3141895,
+            "VirtualHostId": 1618187,
+            "MySqlDatabaseId": 2679199,
+            "MySqlUserId": 2971455,
+            "Privileges": [
+                "SELECT",
+                "INSERT",
+                "UPDATE",
+                "DELETE",
+                "CREATE",
+                "DROP",
+                "INDEX",
+                "ALTER",
+                "LOCK TABLES",
+                "EXECUTE",
+                "CREATE VIEW",
+                "SHOW VIEW",
+                "CREATE ROUTINE",
+                "ALTER ROUTINE",
+                "CREATE TEMPORARY TABLES"
+            ],
+            "Owner": "20ihostingprovision",
+            "Comments": null,
+            "DatabaseName": "wordpress-3530313521a2",
+            "FloatingName": "sdb-57.hosting.stackcp.net",
+            "Username": "wordpress-3530313521a2",
+            "MySQLGrant": "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE TEMPORARY TABLES ON `wordpress-3530313521a2`.* TO 'wordpress-3530313521a2'@'%' IDENTIFIED BY PASSWORD '*E6E03802272593A723A10AF4037968ABC7E2881F';"
+        },
+        {
+            "MySqlGrantId": 3157725,
+            "VirtualHostId": 1618187,
+            "MySqlDatabaseId": 2679199,
+            "MySqlUserId": 2986465,
+            "Privileges": [
+                "SELECT",
+                "INSERT",
+                "UPDATE",
+                "DELETE",
+                "CREATE",
+                "DROP",
+                "INDEX",
+                "ALTER",
+                "LOCK TABLES",
+                "EXECUTE",
+                "CREATE VIEW",
+                "SHOW VIEW",
+                "CREATE ROUTINE",
+                "ALTER ROUTINE",
+                "CREATE TEMPORARY TABLES"
+            ],
+            "Owner": "20ihostingprovision",
+            "Comments": null,
+            "DatabaseName": "wordpress-3530313521a2",
+            "FloatingName": "sdb-57.hosting.stackcp.net",
+            "Username": "joe-3768",
+            "MySQLGrant": "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE TEMPORARY TABLES ON `wordpress-3530313521a2`.* TO 'joe-3768'@'%' IDENTIFIED BY PASSWORD '*8CCA6E54D4C04D33EF1E54539A72402411467040';"
+        }
+    ],
+    "v": 2
+}
