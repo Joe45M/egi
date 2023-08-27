@@ -8,8 +8,8 @@ get_header();
     <div class="bg-zinc-500/20 py-10 mb-10 lg:pb-16 lg:pt-28">
         <div class="container mx-auto">
             <div class="mb-16">
-                <h1 class="mb-3 font-bold text-2xl lg:text-3xl"><?php echo str_replace('Archives:', '', get_the_archive_title()) ?></h1>
-                <p class="lg:w-1/3"><?php echo str_replace('Archives:', '', get_the_archive_description()) ?></p>
+                <h1 class="mb-3 font-bold text-2xl lg:text-3xl">Latest Streamer news, Drama and industry updates.</h1>
+                <p class="lg:w-1/3">See the latest news from Streamers on Kick & Twitch, follow the spiciest drama, and learn about the industry.</p>
             </div>
 
 

@@ -170,7 +170,7 @@ $reviews = new WP_Query($args);
 
 
         <div class="bg-black">
-            <div class="home-header" style="background-image:url('/wp-content/themes/gaming/img/header-bg.png');">
+            <div class="home-header bg-cover" style="background-image:url('/wp-content/themes/gaming/img/header-bg[1].webp');">
                 <div class="py-48 bg-zinc-900/20 hue-rotate">
                     <div class="container mx-auto">
                         <h1 class="text-3xl text-white text-center font-bold mb-10 uppercase">Ultimate game guides</h1>

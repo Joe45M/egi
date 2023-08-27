@@ -1,49 +1,101 @@
 <?php
-
+/**
+ * The template for displaying archive pages
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package gaming
+ */
 
 get_header();
-
 ?>
-<div class="py-10 mb-10 lg:py-32 font-display bg-gradient-to-bl from-nd-600 to-nd-400 text-center text-white text-2xl lg:text-5xl">
-    <h1 class="mb-3 font-bold ">Latest articles</h1>
-    <p class="text-lg font-normal">Elite gamer guides and insights for Minecraft and Call of Duty: Warzone.</p>
+
+    <main id="primary" class="site-main test2">
 
 
-    <div class="flex justify-center">
+        <div class="py-10">
+            <div class="container mx-auto">
 
-        <div class="mb-3">
+
+                <div class="mb-3 text-sm text-zinc-200">
+                    <?php
+
+                    yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+                    ?>
+                </div>
+                <h1 class="text-4xl font-display text-zinc-200 mb-1 font-bold uppercase"><?php echo str_replace(' Culture:', '', get_the_archive_title()) ?></h1>
+                <div class="text-xl text-zinc-400 font-lighter"><?php
+                    the_archive_description(); ?></div>
+            </div>
+
+
             <?php
 
-            yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+            $term = get_term_by('term_taxonomy_id', get_queried_object()->term_id);
+
+
+            $tags = get_field('tags', $term);
+
             ?>
+
+            <div class="container mx-auto mb-5 pt-5">
+                <div class="grid grid-cols-2 lg:grid-cols-6 gap-5">
+                    <?php
+
+                    if (!isset($_GET['tags'])):
+                        foreach ($tags as $tag): ?>
+
+                            <a class="p-5 rounded-md text-white text-center bg-zinc-800 border border-gray-600" href="?getby=tag&tags=<?php echo $tag->slug ?>">
+                                <?php echo $tag->name ?>
+                            </a>
+
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
+
+                </div>
+            </div>
         </div>
-    </div>
-    <!--            <form action="">-->
-    <!--                <input type="text" name="s" placeholder="Search for tips.." class="p-3 text-lg placeholder:text-white/50 focus:bg-white focus:text-black duration-300 hover:bg-white hover:placeholder:text-black rounded-md border border-gray-300 bg-transparent">-->
-    <!--            </form>-->
-</div>
-<div class="container mx-auto mt-10">
-    <div class="grid lg:grid-cols-3 gap-10">
-        <?php
-        $i = 0;
-        if (have_posts()) {
-            while (have_posts()) {
-                the_post();
+        <?php if (have_posts()) : ?>
+        <div class="container mx-auto">
+            <div class="grid lg:grid-cols-3 gap-10">
+                <?php
+                /* Start the Loop */
+                $i = 0;
+                while (have_posts()) :
+                    the_post();
+
+                if ($i === 3 || $i === 9): ?>
+
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6764478945960117"
+                            crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-format="fluid"
+                         data-ad-layout-key="-62+ct+5-46+cv"
+                         data-ad-client="ca-pub-6764478945960117"
+                         data-ad-slot="2770254447"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+
+                <?php endif;
 
                 if ($i === 0): ?>
 
+
+
                     <a href="<?php the_permalink() ?>" class="lg:col-span-3 group">
                         <div class="grid lg:grid-cols-2 gap-10">
-                            <img src="<?php the_post_thumbnail_url('small') ?>" alt="Post image"
-                                 class="aspect-video rounded-xl group-hover:scale-105 duration-300">
+                            <img src="<?php the_post_thumbnail_url(get_the_ID()) ?>" alt="Post image"
+                                 class="aspect-video rounded-md group-hover:scale-105 duration-300">
 
                             <div class="flex">
                                 <div class="justify-between">
-                                    <p class="text-3xl mb-3 text-zinc-200 font-bold"><?php the_title(); ?></p>
-                                    <p class="text-xs mb-3 text-zinc-200"><?php echo wp_trim_words(get_the_excerpt(), 22, '...') ?></p>
-                                    <div class="leading-7 mb-5 text-zinc-200"><?php the_excerpt() ?></div>
+                                    <p class="text-3xl mb-3 font-bold text-white"><?php the_title(); ?></p>
+                                    <div class="leading-7 text-zinc-200 mb-5"><?php the_excerpt() ?></div>
                                     <div class="flex w-full gap-5">
-                                        <div class="flex items-center text-gray-200">
+                                        <div class="flex items-center text-gray-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                  viewBox="0 0 24 24"
                                                  stroke-width="1.5" stroke="currentColor" class="w-6  mr-2 h-6">
@@ -54,7 +106,7 @@ get_header();
                                                 <?php echo get_the_author_meta('display_name'); ?>
                                             </span>
                                         </div>
-                                        <div class="flex text-gray-200 items-center">
+                                        <div class="flex items-center text-gray-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                  viewBox="0 0 24 24"
                                                  stroke-width="1.5" stroke="currentColor" class="w-6 mr-2 h-6">
@@ -74,16 +126,16 @@ get_header();
                 <?php else: ?>
 
                     <a href="<?php the_permalink(); ?>" class="group">
-                        <img src="<?php the_post_thumbnail_url('small') ?>" alt="Post image"
+                        <img src="<?php the_post_thumbnail_url('medium') ?>" alt="Post image"
                              class="w-full aspect-video object-cover rounded-md mb-5 group-hover:scale-105 duration-300">
 
                         <div class="flex">
                             <div class="self-end">
-                                <p class="text-xl text-zinc-200 mb-3 font-bold"><?php the_title(); ?></p>
-                                <p class="text-xs text-zinc-200 mb-3"><?php echo wp_trim_words(get_the_excerpt(), 22, '...') ?></p>
+                                <p class="text-xl mb-3 font-bold text-white"><?php the_title(); ?></p>
+                                <p class="text-xs mb-3 text-zinc-200"><?php echo wp_trim_words(get_the_excerpt(), 22, '...') ?></p>
 
                                 <div class="flex w-full gap-5">
-                                    <div class="flex text-gray-200 items-center">
+                                    <div class="flex items-center text-gray-400">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-6  mr-2 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -93,7 +145,7 @@ get_header();
                                                 <?php echo get_the_author_meta('display_name'); ?>
                                             </span>
                                     </div>
-                                    <div class="flex text-zinc-200 items-center">
+                                    <div class="flex items-center text-gray-400">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-6 mr-2 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -111,45 +163,28 @@ get_header();
 
                 endif;
 
-                $i++;
-            }
-        } else {
-            // no posts found
+                    $i++;
 
-        } ?>
-    </div>
-    <div class="flex justify-center w-full">
-        <?php
+                endwhile;
 
-        the_posts_pagination()
 
-        ?></div>
+                else :
 
-    <div class="relative mb-3">
-        <h3 class="text-3xl font-bold z-50 py-3 pr-5 bg-zinc-900 text-zinc-200 relative inline-block">All tags </h3>
-        <div class="absolute h-2 bg-brand w-full top-1/2 left-0 z-10 -translate-y-1/2"></div>
-    </div>
-    <div class="flex flex-wrap gap-5">
-        <?php
+                    get_template_part('template-parts/content', 'none');
 
-        $tags = get_tags(array(
-            'hide_empty' => false
-        ));
+                endif;
+                ?>
+            </div>
+        </div>
 
-        if ($tags) {
+        <div class="flex justify-center w-full">
+            <?php
 
-            foreach ($tags as $tag) { ?>
+            the_posts_pagination()
 
-                <a href="<?php echo get_tag_link($tag) ?>"
-                   class="px-5 py-1 hover:bg-nd-600 duration-75 text-white hover:text-white rounded-full bg-nd-500"><?php echo $tag->name ?></a>
+            ?></div>
 
-            <?php }
-        } ?>
-    </div>
-</div>
+    </main><!-- #main -->
 
 <?php
-
 get_footer();
-
-?>

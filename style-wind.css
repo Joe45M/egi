@@ -26,6 +26,10 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @tailwind components;
 @tailwind utilities;
 
+#primary {
+	@apply pt-[80px];
+}
+
 @keyframes float {
 	0% {
 		text-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
@@ -49,14 +53,48 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	@apply text-sm lg:text-lg lg:leading-loose text-zinc-200;
 }
 
+.entry-content ul {
+	@apply pl-10;
+}
 
+.entry-content ol {
+	@apply pl-10;
+}
+
+.entry-content ul li {
+	@apply pl-1;
+	list-style: url("data:image/svg+xml,%3Csvg width='9' height='9' viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='9' height='9' fill='%23EA2AEE'/%3E%3C/svg%3E%0A");
+}
+
+.entry-content h4 {
+	@apply font-bold
+}
+
+.entry-content .text-lg a {
+	position: relative;
+	@apply font-bold text-fuchsia-600 hover:text-fuchsia-500;
+	z-index: 2;
+}
+
+.entry-content .adsbygoogle {
+	@apply mb-5;
+}
+
+.entry-content .text-lg a::after {
+	content: "";
+	z-index: 0;
+	position: absolute;
+	top: calc(100%);
+	left: 0;
+	@apply rounded-full w-full h-1 bg-gradient-to-r from-fuchsia-500 to-purple-800;
+}
 
 .page_item {
 	@apply font-bold;
 }
 
 ul#primary-menu {
-	@apply block lg:flex;
+	@apply block lg:flex h-full;
 	@apply justify-end;
 }
 
@@ -76,7 +114,7 @@ ol li {
 }
 
 .menu-item a:hover {
-	@apply bg-zinc-900;
+	@apply bg-zinc-900/20;
 }
 
 /* editor rules */
@@ -86,7 +124,7 @@ ol li {
 }
 
 .entry-content a {
-	@apply text-brand hover:text-brand-700 duration-75;
+	@apply hover:text-brand-700 duration-75;
 }
 
 .entry-content h2 {
@@ -126,15 +164,15 @@ ol li {
 }
 
 .entry-content h1 {
-	@apply mb-5 font-bold;
+	@apply mb-6 font-bold;
 }
 
 .entry-content h2 {
-	@apply mb-5 font-bold;
+	@apply mb-6 font-bold;
 }
 
 .entry-content h3 {
-	@apply mb-5 font-bold;
+	@apply mb-6 font-bold;
 }
 
 .entry-content ul:not(.result-box) {
@@ -483,6 +521,10 @@ Comments
 	}
 }
 
+.menu-item a {
+	height: 100%;
+}
+
 .about-header::after {
 	content: "";
 	position: absolute;
@@ -492,7 +534,7 @@ Comments
 	top: 0;
 	z-index: 10;
 	animation-direction: reverse;
-	background-color: #efefef;
+	@apply bg-zinc-800;
 	animation: BannerSlide .8s ease-out;
 	animation-fill-mode: forwards;
 	animation-delay: 500ms;
@@ -563,8 +605,8 @@ Comments
 Navigation styles
  */
 .menu-item-has-children {
-	position: relative;
 	padding-right: 25px;
+	position: relative;
 }
 
 .menu-item-has-children::after {
@@ -582,14 +624,111 @@ Navigation styles
 
 .menu-item-has-children .sub-menu {
 	display: none;
+	position: absolute;
+	opacity: 0;
+	transition-duration: .5s;
+	top: 120px;
+
+}
+
+@keyframes navLoad {
+	0% {
+		/*display: block;*/
+		opacity: 0;
+		top: 100px;
+	}
+
+	100% {
+		opacity: 1;
+		top: 80px;
+	}
+
 }
 
 .menu-item-has-children:hover .sub-menu {
 	display: block;
 	position: absolute;
-	@apply bg-zinc-900 rounded-md p-2 w-72;
-	top: 90%;
+	@apply rounded-md p-2 w-[80vw] grid lg:grid-cols-2 gap-10 lg:w-[800px];
+	top: 100px;
 	z-index: 10;
-	width: ;
-	left: 0;
+	left: 50%;
+	@apply p-10;
+	transform: translateX(-50%);
+	transition-duration: .5s;
+	animation: navLoad .5s forwards;
+}
+
+.menu-item-has-children:hover .sub-menu li a {
+	@apply p-0 border border-gray-500 rounded-lg block w-full;
+}
+.menu-item-has-children:hover .sub-menu li a .menu-link-image {
+	@apply bg-center bg-cover rounded-lg;
+}
+
+.menu-link-inner {
+	@apply px-3 p-3 lg:pt-20 pb-3 bg-gradient-to-t from-zinc-800 to-zinc-700/60 text-white rounded-lg;
+}
+
+.sub-menu {
+}
+.link-text {
+	@apply mb-3;
+}
+
+.menu-link-description {
+	@apply text-sm text-white font-light;
+	text-transform: none !important;
+}
+
+.nav-bg {
+	pointer-events: none;
+	color: rgba(0,0,0,0.5);
+	font-weight: normal;
+	padding: 1em;
+	position: absolute;
+	transition: opacity 2s ease-out;
+	transform: rotateX(-25deg) translateX(-50%) scale(1);
+	transform-origin: 50% 7em 0em;
+	opacity: 0;
+	box-shadow: 0 2px 7px rgba(0,0,0,0.1), 0 2px 20px rgba(0,0,0,0.3);
+	box-sizing: border-box;
+	top: 3rem;
+	left: 50%;
+	border-radius: 10px;
+	display: block;
+	height: 300px;
+	width: 3600px;
+}
+
+#primary-menu .menu-item-has-children:nth-of-type(3):hover ~ .nav-bg {
+	opacity: 1;
+	clip-path: inset(1.4rem 35.8% 4.9rem 43.1%);
+}
+
+#primary-menu .menu-item-has-children:nth-of-type(2):hover ~ .nav-bg {
+	opacity: 1;
+	clip-path: inset(1.4rem 40.1% 0 38.5%);
+	height: 44rem;
+}
+
+.nav-bg	{
+	transition: clip-path 0.25s ease-out, left 0.15s ease-out, height 0.15s ease-out;
+}
+
+.menu-item-has-children li {
+	opacity: 0;
+	transition-duration: 2s;
+	transition-property: opacity;
+	transition-delay: 2s;
+}
+
+.menu-item-has-children:hover li {
+	opacity: 1;
+	transition-duration: 2s;
+	transition-delay: 2s;
+	transition-property: opacity;
+}
+
+.menu-item-has-children .sub-menu {
+	@apply bg-zinc-800;
 }

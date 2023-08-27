@@ -8,16 +8,16 @@
 get_header();
 
 ?>
-    <main class="site-main relative" x-data="{easterEgg: 0}">
+    <main class="site-main relative text-white" x-data="{easterEgg: 0}">
         <div x-cloak x-show="easterEgg >= 5"
              class="fixed left-0 top-0 z-50 w-full h-screen bg-nd-500 flex items-center justify-center text-white font-bold">
             <div>
                 UWU. We love you too, random stranger.
             </div>
-            <button class="ml-5 bg-white p-2 rounded-md text-nd" @click="easterEgg = 0">OK</button>
+            <button class="ml-5 bg-zinc-900 p-2 rounded-md text-nd" @click="easterEgg = 0">OK</button>
         </div>
         <div class="">
-            <div class="about-header bg-gray-100 relative">
+            <div class="about-header bg-zinc-900 relative">
                 <div class="container mx-auto">
                     <div class="h-[40vh] grid lg:grid-cols-2">
                         <div class="pt-56">
@@ -27,12 +27,12 @@ get_header();
                         <div class="self-start justify-end font-bold relative text-gray-200">
                             <div class="absolute right-0 top-32">
                                 <div class="flex gap-3 lg:text-[800%]  right-0">
-                                    <p id="counter" class="">
+                                    <p id="counter" class="text-gray-100/10">
                                         0
                                     </p>
-                                    <p>+</p>
+                                    <p class=" text-gray-100/10">+</p>
                                 </div>
-                                <p class="lg:text-[500%] -mt-[40px]">ARTICLES</p>
+                                <p class="lg:text-[500%] text-gray-100/10 -mt-[40px]">ARTICLES</p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@ get_header();
             </div>
             <div class="">
                 <div class="container mx-auto about-second mb-20">
-                    <div class=" py-20 lg:text-4xl font-bold  capitalize">
+                    <div class=" py-20 lg:text-4xl font-bold  capitalize mt-10">
                         We create Compelling content which fuels gamers.
                     </div>
                     <div class="grid md:grid-cols-3 gap-10">
@@ -50,7 +50,7 @@ get_header();
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                       d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/>
                             </svg>
-                            <p class="font-bold text-black uppercase text-lg tracking-wider mb-3">Gaming culture
+                            <p class="font-bold text-black uppercase text-lg tracking-wider mb-3 text-white">Gaming culture
                                 coverage</p>
                             <p class="text-black md:pr-10 text-gray-500">Gaming is more than just picking up a
                                 controller. We understand that gaming is a lifestyle, a hobby, a job, and a world to
@@ -63,7 +63,7 @@ get_header();
                                       d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/>
                             </svg>
 
-                            <p class="font-bold text-black uppercase text-lg tracking-wider mb-3">Complete gaming
+                            <p class="font-bold text-black uppercase text-lg tracking-wider mb-3 text-white">Complete gaming
                                 tutorials</p>
                             <p class="text-black lg:pr-10 text-gray-500">Elitegamerinsights write what we call Ultimate
                                 Guides. Tutorials which include everything you will ever need to complete that confusing
@@ -80,14 +80,14 @@ get_header();
                             </button>
 
 
-                            <p class="font-bold text-black uppercase text-lg tracking-wider mb-3">We love what we do</p>
+                            <p class="font-bold text-black uppercase text-lg tracking-wider mb-3 text-white">We love what we do</p>
                             <p class="text-black lg:pr-10 text-gray-500">Really, we do. EGI was founded in April 2023,
                                 and since then we've created over 145 guides, 20+ short-form videos, and countless
                                 interactions online. We love helping gamers.</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-nd-50/30 pb-20">
+                <div class="pb-20" style="background-image: url('/wp-content/themes/gaming/img/newsletter.webp');">
                     <div class="container mx-auto">
                         <div class="grid lg:grid-cols-2 gap-5">
                             <div>
@@ -117,7 +117,7 @@ get_header();
                         </div>
                     </div>
                 </div>
-                <div class="bg-white">
+                <div class="bg-zinc-900">
                     <div class="container mx-auto">
                         <div class=" pt-20 mb-5 lg:text-4xl font-bold capitalize">
                             Work with us
@@ -125,7 +125,7 @@ get_header();
                         <p class="text-xl font-bold uppercase text-nd">Nothing gets us excited like a new project.</p>
                         <p class="text-gray-400 text-xl mb-10">From early access, to reviews and guest posting, lets
                             work together.</p>
-                        <a href="mailto:contact@elitegamerinsights.com" class="lg:text-3xl font-bold tracking-wide">contact@elitegamerinsights.com</a>
+                        <a href="mailto:contact@elitegamerinsights.com" class="lg:text-3xl uppercase font-bold tracking-wide">contact@elitegamerinsights.com</a>
                     </div>
                 </div>
             </div>

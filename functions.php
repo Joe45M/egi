@@ -64,34 +64,26 @@ endif;
  */
 
 
+
+/**
+ * Include all post types
+ */
 require get_template_directory().'/functions/types.php';
 
-function taxes()
-{
-    // Add new "games" taxonomy to Posts
-    register_taxonomy('game', 'games', array(
-        // Hierarchical taxonomy (like categories)
-        'hierarchical' => true,
-        'show_in_rest' => true,
-        // This array of options controls the labels displayed in the WordPress Admin UI
-        'labels'       => array(
-            'name'              => _x('games', 'taxonomy general name'),
-            'singular_name'     => _x('game', 'taxonomy singular name'),
-            'search_items'      => __('Search games'),
-            'all_items'         => __('All games'),
-            'parent_item'       => __('Parent game'),
-            'parent_item_colon' => __('Parent game:'),
-            'edit_item'         => __('Edit game'),
-            'update_item'       => __('Update game'),
-            'add_new_item'      => __('Add New game'),
-            'new_item_name'     => __('New game Name'),
-            'menu_name'         => __('games'),
-        ),
-        // Control the slugs used for this taxonomy
-    ));
-}
+/**
+ * Include all taxonomies
+ */
+require get_template_directory().'/functions/taxes.php';
 
-add_action('init', 'taxes', 0);
+require 'functions/api.php';
+
+require_once 'functions/cli.php';
+
+require_once 'functions/shortcodes.php';
+
+require_once 'functions/class-nav-walker.php';
+
+
 
 
 /**
@@ -356,201 +348,6 @@ if (defined('JETPACK__VERSION')) {
 
 
 
-function update_default_image($args) {
-
-    if (!$args) {
-        WP_CLI::line('no args. try again :) Thumbnail id required. found in media URL');
-
-        return 1;
-    }
-
-
-    $id = explode(' ', $args[0]);
-
-
-    $id = $id[array_rand($id)];
-
-    $args = array(
-        'post_type' => 'games',
-        'meta_query' => array(
-            array(
-                'key' => '_thumbnail_id',
-                'value' => '?',
-                'compare' => 'NOT EXISTS'
-            )
-        ),
-    );
-
-    $new_query = new WP_Query( $args );
-
-    var_dump($new_query->post_count);
-
-    foreach ($new_query->posts as $post) {
-        set_post_thumbnail($post->ID, $id);
-        WP_CLI::line('set image for ' . $post->post_title);
-    }
-
-}
-
-try {
-    add_action('cli_init', function () {
-        WP_CLI::add_command('img', 'update_default_image');
-    });
-
-} catch (Exception $e) {
-
-}
-
-
-// Article short codes
-
-add_shortcode('pe_image', function () {
-    $list = [
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/Pocket_Edition_1.1.5.webp',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/1958fac6-abf0-11ed-b444-02420a000134.webp',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/Pocket_Edition_0.9.0.webp'
-    ];
-
-    $url = $list[array_rand($list)];
-
-    return "<img src='$url' alt='Minecraft PE Pocket Edition EGI'>";
-});
-
-
-add_shortcode('wifi_img', function ($atts = []) {
-    $list = [
-        'https://elitegamerinsights.com/wp-content/uploads/2023/06/isp-1.jpg',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/06/Hyperoptic-VW-Crafters.jpg',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/06/About-us-desktop-image-2-1.jpg'
-    ];
-
-    $url = $list[array_rand($list)];
-
-    if ($atts) {
-        $url = $atts['url'];
-    }
-
-    return "<img src='$url' alt='Image Alt Elite Gaming Insights, call of duty & guides'>";
-});
-
-add_shortcode('cod_image', function () {
-    $list = [
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/Call-of-Duty-Warzone-Mobile-release-date-19c2f9e.jpg',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/4-11-cod-hub_wz-tac-sm-tout.jpg',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/cod-news.jpeg',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/call-of-duty-modern-warfare-button-01-1559237615728.jpg',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/d2e74bfc-22e1-4985-860f-dc76d69e5b8f.jpg',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/CODMS3patchnotesinsidemode.webp',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/call-of-duty-modern-warfare-2-key-art-1663249948.jpg',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/CoD-2023-Jupiter.jpg',
-        'https://elitegamerinsights.com/wp-content/uploads/2023/05/cod-redeem-codes-2.jpg',
-    ];
-
-    $url = $list[array_rand($list)];
-
-    return "<img src='$url' alt='Call of Duty Image, EGI Elite gamer insights'>";
-});
-
-// Native google ad, bidvertiser rejected us =(
-add_shortcode('bidvertiser', function () {
-    return '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6764478945960117"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-6764478945960117"
-     data-ad-slot="7641940191"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>';
-});
-
-
-// Native add
-add_shortcode('ad', function () {
-    return '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6764478945960117"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-6764478945960117"
-     data-ad-slot="7641940191"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>';
-});
-
-add_shortcode('author_ad', function () {
-    return '<!-- Author ad -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6764478945960117"
-     data-ad-slot="3384451209"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>';
-});
-
-// article ad
-add_shortcode('ad_2' , function () {
-    return '<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-6764478945960117"
-     data-ad-slot="2742820353"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>';
-});
-
-// article ad
-add_shortcode('ad_3' , function () {
-    return '<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-6764478945960117"
-     data-ad-slot="5063530238"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>';
-});
-
-// article ad
-add_shortcode('ad_4' , function () {
-    return '<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-6764478945960117"
-     data-ad-slot="3429731355"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>';
-});
-// article ad
-add_shortcode('ad_5' , function () {
-    return '<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="autorelaxed"
-     data-ad-client="ca-pub-6764478945960117"
-     data-ad-slot="5923769426"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>';
-});
-
-/**
- * WIFI article imports
- */
-
-require 'functions/api.php';
-
 /**
  * Custom ACF Blocks
  */
@@ -582,14 +379,19 @@ function filter_by_tag_on_taxonomy( $query ) {
     }
     if ( is_archive() ) {
 
+
         $by = isset($_GET['getby']) ? $_GET['getby'] : false;
         $tags = isset($_GET['tags']) ? $_GET['tags'] : false;
 
-        if ( 'tag' === $by ) {
-
-
-            $query->set( 'tag', $tags );
+        if ($query->get('post_type') !== 'games') {
+            return false;
         }
+
+        if ( 'tag' !== $by ) {
+            return false;
+        }
+
+        $query->set( 'tag', $tags );
     }
     return $query;
 }
@@ -601,3 +403,26 @@ if( function_exists('acf_add_options_page') ) {
     acf_add_options_page();
 
 }
+
+
+add_filter('mime_types', 'dd_add_jfif_files');
+function dd_add_jfif_files($mimes){
+    $mimes['jfif'] = "image/jpeg";
+    return $mimes;
+}
+
+/**
+ * Retain the original post author even when a secondary user updates the post.
+ */
+// add_action('wp_insert_post', function ($e) {
+//     if (!get_field('creator', $e)) {
+//         add_post_meta($e, 'creator', wp_get_current_user()->ID);
+//     }
+//
+//     $arg = array(
+//         'ID' => $e,
+//         'post_author' => get_post_meta($e, 'creator'),
+//     );
+//
+//     wp_update_post( $arg );
+// });

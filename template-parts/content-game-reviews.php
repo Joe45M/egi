@@ -21,11 +21,11 @@
                 <h1 class="text-3xl tracking-wider font-display font-bold mb-5"><?php the_title() ?></h1>
                 <div class="flex gap-3 items-center mb-5 pb-5">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                         stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    <svg width="28" height="27" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="14.0856" cy="13.5566" r="12.1216" transform="rotate(44.7356 14.0856 13.5566)" stroke="#FF49B6" stroke-width="2"/>
+                        <path d="M14 5V15H22" stroke="#AF2AEE" stroke-width="2"/>
                     </svg>
+
                     <?php echo get_the_date('d F Y') ?>
                 </div>
             </div>
