@@ -166,8 +166,6 @@ get_header();
                     $i++;
 
                 endwhile;
-
-
                 else :
 
                     get_template_part('template-parts/content', 'none');

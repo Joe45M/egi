@@ -69,9 +69,20 @@ if (isset($_GET['dev'])) {
 
     <div class="entry-content mt-20">
         <div class="container mx-auto mb-32">
-            <div class="grid lg:grid-cols-5 gap-14">
+            <div class="grid lg:grid-cols-5 gap-14 relative">
                 <div class="relative">
                     <div class="sticky">
+                        <div class="mb-3">
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-6764478945960117"
+                                 data-ad-slot="8698582902"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
                         <p class="font-bold uppercase text-sm">Content</p>
                         <div class="rounded-md mb-5 text-sm" x-data="{show: true}">
                             <div x-show="show" id="quick-links-container" x-transition></div>
@@ -153,8 +164,18 @@ if (isset($_GET['dev'])) {
                         <?php endif; ?>
                     </div>
                 </div>
-                <div>
+                <div class="sticky relative top-10 self-start">
                     <div class="wrap mb-5">
+                        <!-- Above Author ad -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-6764478945960117"
+                             data-ad-slot="1332675305"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                     </div>
                     <?php echo get_template_part('template-parts/author') ?>
 

@@ -139,10 +139,6 @@ ol li {
 	@apply text-xl lg:text-xl;
 }
 
-.nav-links {
-	@apply text-2xl text-nd-500;
-}
-
 #breadcrumbs a {
 	@apply font-bold;
 }
@@ -192,11 +188,23 @@ ol li {
  */
 
 .pagination {
-	@apply p-2 text-base border-4 rounded-lg px-5 border-gray-200 mt-5;
+	@apply p-2 text-base rounded-lg px-5 border-gray-200 mt-5 text-zinc-300;
 }
 
 .pagination a {
-	@apply p-2 text-base;
+	@apply p-4 bg-zinc-700 rounded-md text-zinc-300;
+}
+
+.pagination a, span {
+	@apply mx-3;
+}
+
+.pagination span {
+	@apply p-4 bg-zinc-800 rounded-md text-zinc-300;
+}
+
+.pagination a.next {
+	display: none;
 }
 
 /**

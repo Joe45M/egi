@@ -133,7 +133,6 @@ get_header();
     </div>
     <div class="flex justify-center w-full">
         <?php
-
         the_posts_pagination()
 
         ?></div>
