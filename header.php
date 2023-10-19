@@ -29,6 +29,12 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6764478945960117"
             crossorigin="anonymous"></script>
 
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <?php wp_head(); ?>
 </head>
 
@@ -64,19 +70,19 @@ if ( ! isset($_COOKIE['popup'])) {
 
     <script>
 
-        setTimeout(function () {
-            document.querySelector('#popup').classList.remove('hidden')
-            fathom.trackGoal('C7UYE3LK', 0);
-
-            document.querySelector('#close').addEventListener('click', (e) => {
-                fathom.trackGoal('OT0SW8MK', 0);
-
-                document.querySelector('#popup').classList.add('hidden')
-                fathom.trackGoal('OT0SW8MK', 0);
-                document.cookie = "popup=true";
-
-            })
-        }, 12000)
+        // setTimeout(function () {
+        //     document.querySelector('#popup').classList.remove('hidden')
+        //     fathom.trackGoal('C7UYE3LK', 0);
+        //
+        //     document.querySelector('#close').addEventListener('click', (e) => {
+        //         fathom.trackGoal('OT0SW8MK', 0);
+        //
+        //         document.querySelector('#popup').classList.add('hidden')
+        //         fathom.trackGoal('OT0SW8MK', 0);
+        //         document.cookie = "popup=true";
+        //
+        //     })
+        // }, 12000)
 
     </script>
 

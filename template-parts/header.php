@@ -55,13 +55,13 @@ if ($show_header) { ?>
 
     if (in_array(get_post_type(), ['games',  'news', 'streaming'])) { ?>
 
-        <header class="relative lg:pl-64 pt-10">
+        <header class="relative lg:pl-64 pt-10 px-10 bg-zinc-800">
             <div class="mb-3">
                 <?php
                 yoast_breadcrumb('<p id="breadcrumbs">', '</p>');
                 ?>
             </div>
-            <h1 class="text-3xl tracking-wider font-display font-bold mb-5"><?php the_title() ?></h1>
+            <h1 class="text-xl lg:text-3xl mt-10 tracking-normal lg:tracking-wider font-display font-bold mb-5"><?php the_title() ?></h1>
             <div class="flex gap-3 items-center mb-5 pb-5">
 
                 <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -159,17 +159,30 @@ $reviews = new WP_Query($args);
 
         <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
+        <div class="py-10 lg:py-0 lg:min-h-[70vh] header-home relative" style="background-image: url('/wp-content/themes/gaming/img/home-header.jpg');">
 
-        <div class="bg-black">
-            <div class="home-header bg-cover" style="background-image:url('/wp-content/themes/gaming/img/header-bg[1].webp');">
-                <div class="py-48 bg-zinc-900/20 hue-rotate">
-                    <div class="container mx-auto">
-                        <h1 class="text-3xl text-white text-center font-bold mb-10 uppercase">Ultimate game guides</h1>
-                        <h2 class="text-2xl text-white text-center font-bold">Best In Class Gaming Tutorials by EliteGamerInsights</h2>
-                    </div>
-                </div>
+            <div class="container mx-auto lg:pt-[10%]">
+                <h1 class="text-2xl lg:text-4xl uppercase mt-32 text-white font-bold mb-2">Elitegamerinsights</h1>
+                <h2 class="text-5xl lg:text-7xl uppercase text-white font-bold mb-5">MWIII News & Guides</h2>
+                <p class="text-2xl text-white lg:w-2/3 lg:mr-10">The latest Call of Duty MWIII Loadouts, metas and guides to
+                    <br class="lg:block hidden"> improve your game and dominate the field.</p>
             </div>
+
+            <video id="home-vid" playsinline="" loop="" muted="" autoplay="">
+                <source src="/wp-content/themes/gaming/img/hero.mp4" type="video/mp4">
+            </video>
         </div>
+
+<!--        <div class="bg-black">-->
+<!--            <div class="home-header bg-cover" style="background-image:url('/wp-content/themes/gaming/img/header-bg[1].webp');">-->
+<!--                <div class="py-48 bg-zinc-900/20 hue-rotate">-->
+<!--                    <div class="container mx-auto">-->
+<!--                        <h1 class="text-3xl text-white text-center font-bold mb-10 uppercase">Ultimate game guides</h1>-->
+<!--                        <h2 class="text-2xl text-white text-center font-bold">Best In Class Gaming Tutorials by EliteGamerInsights</h2>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="block text-gray-200 container mx-auto mt-10">
 
             <div class="grid mb-10 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-5">

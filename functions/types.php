@@ -491,6 +491,8 @@ function custom_post_type()
 
     register_post_type('culture', $args);
 
+
+
 }
 
 add_action('init', 'custom_post_type', 0);

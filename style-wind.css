@@ -26,6 +26,15 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @tailwind components;
 @tailwind utilities;
 
+.header-home {
+	@apply bg-cover bg-center relative;
+}
+
+#home-vid {
+	@apply absolute w-full bottom-0 left-0;
+	mix-blend-mode: lighten;
+}
+
 #primary {
 	@apply pt-[80px];
 }
@@ -739,4 +748,22 @@ Navigation styles
 
 .menu-item-has-children .sub-menu {
 	@apply bg-zinc-800;
+}
+
+
+#breadcrumbs {
+	@apply absolute lg:relative left-0 h-[19px] overflow-clip text-gray-200 overflow-ellipsis px-10 lg:px-0
+}
+
+#breadcrumbs > span:first-child > span {
+	@apply ml-0
+}
+
+#breadcrumbs > span:first-child {
+	@apply ml-0
+}
+
+ins {
+	max-width: 100%;
+	overflow: hidden;
 }

@@ -67,12 +67,12 @@ if (isset($_GET['dev'])) {
 <article id="post-<?php the_ID(); ?>" <?php post_class('text-zinc-200'); ?>>
     <?php get_template_part('template-parts/header') ?>
 
-    <div class="entry-content mt-20">
+    <div class="entry-content mt-5 lg:mt-20">
         <div class="container mx-auto mb-32">
             <div class="grid lg:grid-cols-5 gap-14 relative">
                 <div class="relative">
                     <div class="sticky">
-                        <div class="mb-3">
+                        <div class="mb-3 hidden lg:block">
                             <ins class="adsbygoogle"
                                  style="display:block"
                                  data-ad-client="ca-pub-6764478945960117"
@@ -395,7 +395,7 @@ if (isset($_GET['dev'])) {
                 lastKnownScrollPosition = window.scrollY;
 
                 window.requestAnimationFrame(() => {
-                    element.style.opacity = `${1 - (this.scrollY / 500)}`;
+                    // element.style.opacity = `${1 - (this.scrollY / 500)}`;
                 });
             });
         }
