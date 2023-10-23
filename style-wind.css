@@ -767,3 +767,15 @@ ins {
 	max-width: 100%;
 	overflow: hidden;
 }
+
+.table-auto td {
+	@apply p-5
+}
+
+.table-auto th {
+	@apply p-5
+}
+
+.table-auto tr:nth-child(odd) {
+	@apply bg-zinc-800
+}

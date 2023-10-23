@@ -1,7 +1,7 @@
 <div class="">
 
 
-    <div class="grid lg:grid-cols-3 gap-10 mb-20">
+    <div class="grid lg:grid-cols-4 gap-10 mb-20">
         <?php
 
         $i = 0;
